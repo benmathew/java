@@ -1,0 +1,404 @@
+
+Find out the number of days in between two  given dates ?
+
+public class Date {
+
+	public static void main(String[] args) {
+		
+		Calendar cal1= new GregorianCalendar();
+		Calendar cal2= new GregorianCalendar();
+		SimpleDateFormat ft = new SimpleDateFormat("mm/dd/yyyy");
+		cal1.set(2013,1,1);
+		cal2.set(2013,1,15);
+		System.out.println("start date " + ft.format(cal1.getTime()));
+		System.out.println("end date "+ ft.format(cal2.getTime()));
+		System.out.println("days b/w"+ daysBetween(cal1.getTime(),cal2.getTime()));
+		
+		
+
+	}
+
+	static int daysBetween(java.util.Date date, java.util.Date date2) {
+
+		return (int)((date2.getTime()-date.getTime()));
+	}
+
+}
+=====================================================================================
+How to swap two variables, by using pass by reference method ?
+
+public class JavaException {
+
+public static void main(String[] args) { 
+String a[] = {"hello", "world"}; 
+swap(a); 
+System.out.println(a[0] + " " + a[1]); 
+} 
+static void swap(String[] a) { 
+String t = a[0]; 
+a[0] = a[1]; 
+a[1] = t; 
+}
+
+void swap(int num1, int num2) {
+   int temp;
+   temp = num1;
+   num1 = num2;
+   num2 = temp;
+}}
+===================================================================================
+How to make a list immutable?
+
+package com.tutorialspoint;
+
+import java.util.*;
+
+public class CollectionsDemo {
+   public static void main(String[] args) {
+   // create array list
+   List<Character> list = new ArrayList<Character>();
+      
+   // populate the list
+   list.add('X');
+   list.add('Y');
+      
+   System.out.println("Initial list: "+ list);
+      
+   // make the list unmodifiable
+   List<Character> immutablelist = Collections.unmodifiableList(list);
+      
+   // try to modify the list
+   immutablelist.add('Z');      
+   }
+}
+================================================================================
+
+
+
+
+
+
+=====================================================================================
+insertion sort
+
+package com.java2novice.algos;
+ 
+public class MyInsertionSort {
+ 
+    public static void main(String[] args) {
+         
+        int[] input = { 4, 2, 9, 6, 23, 12, 34, 0, 1 };
+        insertionSort(input);
+    }
+     
+    private static void printNumbers(int[] input) {
+         
+        for (int i = 0; i < input.length; i++) {
+            System.out.print(input[i] + ", ");
+        }
+        System.out.println("\n");
+    }
+ 
+    public static void insertionSort(int array[]) {
+        int n = array.length;
+        for (int j = 1; j < n; j++) {
+            int key = array[j];
+            int i = j-1;
+            while ( (i > -1) && ( array [i] > key ) ) {
+                array [i+1] = array [i];
+                i--;
+            }
+            array[i+1] = key;
+            printNumbers(array);
+        }
+    }
+}
+==================================================================================================
+Write a program to get distinct word list from the given file.
+
+package com.java2novice.algos;
+ 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+ 
+public class MyDistinctFileWords {
+ 
+    public List<String> getDistinctWordList(String fileName){
+ 
+        FileInputStream fis = null;
+        DataInputStream dis = null;
+        BufferedReader br = null;
+        List<String> wordList = new ArrayList<String>();
+        try {
+            fis = new FileInputStream(fileName);
+            dis = new DataInputStream(fis);
+            br = new BufferedReader(new InputStreamReader(dis));
+            String line = null;
+            while((line = br.readLine()) != null){
+                StringTokenizer st = new StringTokenizer(line, " ,.;:\"");
+                while(st.hasMoreTokens()){
+                    String tmp = st.nextToken().toLowerCase();
+                    if(!wordList.contains(tmp)){
+                        wordList.add(tmp);
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            try{if(br != null) br.close();}catch(Exception ex){}
+        }
+        return wordList;
+    }
+     
+    public static void main(String a[]){
+         
+        MyDistinctFileWords distFw = new MyDistinctFileWords();
+        List<String> wordList = distFw.getDistinctWordList("C:/sample.txt");
+        for(String str:wordList){
+            System.out.println(str);
+        }
+    }
+}
+=====================================================================================
+find the length of the longest substring without repeating characters
+
+public int lengthOfLongestSubstring(String s) {
+        if(s==null)
+            return 0;
+	boolean[] flag = new boolean[256];
+ 
+	int result = 0;
+	int start = 0;
+	char[] arr = s.toCharArray();
+ 
+	for (int i = 0; i < arr.length; i++) {
+		char current = arr[i];
+		if (flag[current]) {
+			result = Math.max(result, i - start);
+			// the loop update the new start point
+			// and reset flag array
+			// for example, abccab, when it comes to 2nd c,
+			// it update start from 0 to 3, reset flag for a,b
+			for (int k = start; k < i; k++) {
+				if (arr[k] == current) {
+					start = k + 1; 
+					break;
+				}
+				flag[arr[k]] = false;
+			}
+		} else {
+			flag[current] = true;
+		}
+	}
+ 
+	result = Math.max(arr.length - start, result);
+ 
+	return result;
+}
+===================================================================================
+Write a program to remove duplicates from sorted array
+
+package com.java2novice.algos;
+ 
+public class MyDuplicateElements {
+ 
+    public static int[] removeDuplicates(int[] input){
+         
+        int j = 0;
+        int i = 1;
+        //return if the array length is less than 2
+        if(input.length < 2){
+            return input;
+        }
+        while(i < input.length){
+            if(input[i] == input[j]){
+                i++;
+            }else{
+                input[++j] = input[i++];
+            }    
+        }
+        int[] output = new int[j+1];
+        for(int k=0; k<output.length; k++){
+            output[k] = input[k];
+        }
+         
+        return output;
+    }
+     
+    public static void main(String a[]){
+        int[] input1 = {2,3,6,6,8,9,10,10,10,12,12};
+        int[] output = removeDuplicates(input1);
+        for(int i:output){
+            System.out.print(i+" ");
+        }
+    }
+}
+=====================================================================================
+fibbonaci series
+
+package com.java2novice.algos;
+ 
+public class MyFibonacci {
+ 
+    public static void main(String a[]){
+         
+         int febCount = 15;
+         int[] feb = new int[febCount];
+         feb[0] = 0;
+         feb[1] = 1;
+         for(int i=2; i < febCount; i++){
+             feb[i] = feb[i-1] + feb[i-2];
+         }
+ 
+         for(int i=0; i< febCount; i++){
+                 System.out.print(feb[i] + " ");
+         }
+    }
+}
+=========================================================================================
+Write a program to find out duplicate characters in a string
+
+package com.java2novice.algos;
+ 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+ 
+public class DuplicateCharsInString {
+ 
+    public void findDuplicateChars(String str){
+         
+        Map<Character, Integer> dupMap = new HashMap<Character, Integer>();
+        char[] chrs = str.toCharArray();
+        for(Character ch:chrs){
+            if(dupMap.containsKey(ch)){
+                dupMap.put(ch, dupMap.get(ch)+1);
+            } else {
+                dupMap.put(ch, 1);
+            }
+        }
+        Set<Character> keys = dupMap.keySet();
+        for(Character ch:keys){
+            if(dupMap.get(ch) > 1){
+                System.out.println(ch+"--->"+dupMap.get(ch));
+            }
+        }
+    }
+     
+    public static void main(String a[]){
+        DuplicateCharsInString dcs = new DuplicateCharsInString();
+        dcs.findDuplicateChars("Java2Novice");
+    }
+}
+===============================================================================================
+Write a program to create deadlock between two threads
+
+package com.java2novice.algos;
+ 
+public class MyDeadlock {
+ 
+    String str1 = "Java";
+    String str2 = "UNIX";
+     
+    Thread trd1 = new Thread("My Thread 1"){
+        public void run(){
+            while(true){
+                synchronized(str1){
+                    synchronized(str2){
+                        System.out.println(str1 + str2);
+                    }
+                }
+            }
+        }
+    };
+     
+    Thread trd2 = new Thread("My Thread 2"){
+        public void run(){
+            while(true){
+                synchronized(str2){
+                    synchronized(str1){
+                        System.out.println(str2 + str1);
+                    }
+                }
+            }
+        }
+    };
+     
+    public static void main(String a[]){
+        MyDeadlock mdl = new MyDeadlock();
+        mdl.trd1.start();
+        mdl.trd2.start();
+    }
+}
+==================================================================================
+Find out middle index where sum of both ends are equal
+
+package com.java2novice.algos;
+ 
+public class FindMiddleIndex {
+ 
+    public static int findMiddleIndex(int[] numbers) throws Exception {
+ 
+        int endIndex = numbers.length - 1;
+        int startIndex = 0;
+        int sumLeft = 0;
+        int sumRight = 0;
+        while (true) {
+            if (sumLeft > sumRight) {
+                sumRight += numbers[endIndex--];
+            } else {
+                sumLeft += numbers[startIndex++];
+            }
+            if (startIndex > endIndex) {
+                if (sumLeft == sumRight) {
+                    break;
+                } else {
+                    throw new Exception(
+                            "Please pass proper array to match the requirement");
+                }
+            }
+        }
+        return endIndex;
+    }
+ 
+    public static void main(String a[]) {
+        int[] num = { 2, 4, 4, 5, 4, 1 };
+        try {
+            System.out.println("Starting from index 0, adding numbers till index "
+                            + findMiddleIndex(num) + " and");
+            System.out.println("adding rest of the numbers can be equal");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+}
+===================================================================================================
+armstrong
+
+class ArmstrongExample{  
+  public static void main(String[] args)  {  
+    int c=0,a,temp;  
+    int n=153;//It is the number to check armstrong  
+    temp=n;  
+    while(n>0)  
+    {  
+    a=n%10;  
+    n=n/10;  
+    c=c+(a*a*a);  
+    }  
+    if(temp==c)  
+    System.out.println("armstrong number");   
+    else  
+        System.out.println("Not armstrong number");   
+   }  
+}  

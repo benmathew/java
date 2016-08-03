@@ -1,0 +1,238 @@
+1.what is JVM?
+
+A Java virtual machine (JVM) is an abstract computing machine that enables a computer to run a Java program. There are three notions of the JVM: specification, implementation, and instance. The specification is a document that formally describes what is required of a JVM implementation. JVM uses more memory
+
+2.What is memory allocation in Java?
+
+During the garbage collection objects that are no longer used are cleared, thus making space for new objects.
+
+3.What is polymorphism?
+
+When applied to object oriented programming languages like Java, it describes a language's ability to process objects of various types and classes through a single, uniform interface. Polymorphism in Java has two types: Compile time polymorphism (static binding) and Runtime polymorphism (dynamic binding).
+
+4.What is Encapsulation?
+
+Encapsulation is one of the four fundamental OOP concepts. The other three are inheritance, polymorphism, and abstraction. Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as as single unit.
+
+5.What is method overLoading in Java?
+
+Two or more Methods with same Method name but different argument is known as overloading 
+
+6.What is method overriding?
+
+Replacing the value without changing the Method in the cchild class byn extending the parent class is known as overriding
+
+7.Why string is Immutable?
+
+to maintain String pool When a string is created and if the string already exists in the pool, the reference of the existing string will be returned, instead of creating a new object and returning its reference.
+Allow String to Cache its Hashcode
+
+8.What is the difference between String and String buffer?
+
+Well, the most important difference between String and StringBuffer/StringBuilder in java is that String object is immutable whereas StringBuffer/StringBuilder objects are mutable. By immutable, we mean that the value stored in the String object cannot be changed.
+
+9.What is the difference between array and array list?
+
+Array is static in size that is fixed length data structure, One can not change the length after creating the Array object.
+ArrayList is dynamic in size . Each ArrayList object  has instance variable capacity which indicates the size of the ArrayList. As elements are added to an ArrayList its capacity grows automatically.
+
+ArrayList can not contains primitive data types (like int , float , double) it can only contains Object while Array can contain both primitive data types as well as objects.
+
+Length of the ArrayList is provided by the size() method while Each array object has the length variable which returns the length of the array.
+
+We can insert elements into the arraylist object using the add() method while  in array we insert elements using the assignment operator.
+
+Array can be multi dimensional , while ArrayList is always single dimensional.
+
+11.What is a vector in Java?
+ 
+Vector implements a dynamic array. It is similar to ArrayList, but with two differences:
+
+Vector is synchronized.
+
+Vector contains many legacy methods that are not part of the collections framework.
+
+Vector proves to be very useful if you don't know the size of the array in advance or you just need one that can change sizes over the lifetime of a program.
+
+12.What is set in java?
+
+ A Set is a Collection that cannot contain duplicate elements. It models the mathematical set abstraction.
+
+13.What is abstract class?
+
+
+ A class that is declared as abstract is known as abstract class. It contains abstract and non-abstract methods. A method that is declared as abstract and does not have implementation is known as abstract method. Abstract class cannot be instantiated, it needs to be extended by a subclass and its abstract methods need to be implemented in order to use it. 
+What is the use:
+Abstract class is one way of achieving abstraction in java,  Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+
+14. What is an interface?
+
+Interface looks like class but it is not a class. An interface can have methods and variables just like the class but the methods declared in interface are by default abstract (only method signature, no body). Also, the variables declared in an interface are public, static & final by default.
+
+15.Why Java is Platform independent?
+
+Java, you can compile source code on Windows and the compiled code (bytecode to be precise) can be executed (interpreted) on any platform running a JVM. So yes you need a JVM but the JVM can run any compiled code, the compiled code is platform independent.
+
+16.What are access modifiers? Give me an example?
+
+Java provides a number of access modifiers to set access levels for classes, variables, methods and constructors. The four access levels are:
+
+Visible to the package. the default. No modifiers are needed.
+
+Visible to the class only (private).
+
+Visible to the world (public).
+
+Visible to the package and all subclasses (protected).
+
+DEFAULT
+
+String version = "1.5.1";
+
+boolean processOrder() {
+   return true;
+}
+
+PRIVATE
+
+public class Logger {
+   private String format;
+   public String getFormat() {
+      return this.format;
+   }
+   public void setFormat(String format) {
+      this.format = format;
+   }
+}
+
+PUBLIC
+
+public static void main(String[] arguments) {
+   // ...
+}
+
+PROTECTED
+
+class AudioPlayer {
+   protected boolean openSpeaker(Speaker sp) {
+      // implementation details
+   }
+}
+
+class StreamingAudioPlayer {
+   boolean openSpeaker(Speaker sp) {
+      // implementation details
+   }
+}
+
+17.What are java exceptions? Give me an example?
+
+	Where as java.lang.Exception class represents the exceptions which are mainly caused by the application itself. For example, NullPointerException occurs when an application tries to access null object or ClassCastException occurs when an application tries to cast incompatible class types. In this article, we will discuss the differences between Error and Exception in java.
+
+18.What is the difference between throws and throwable?
+
+	throw is a keyword in java which is used to throw an exception manually. But, that exception must be of type java.lang.Throwable class or it’s sub classes. 
+	throws is also a keyword in java which is used in the method signature to indicate that this method may throw mentioned exceptions. 
+
+Throwable is a super class for all types of errors and exceptions in java. This class is a member of java.lang package. Only instances of this class or it’s sub classes are thrown by the java virtual machine or by the throw statement. 
+
+19.What is the difference between Error and exception?
+
+	1) Recovering from Error is not possible. The only solution to errors is to terminate the execution. Where as you can recover from Exception by using either try-catch blocks or throwing exception back to caller.
+	
+	2) You will not be able to handle the Errors using try-catch blocks. Even if you handle them using try-catch blocks, your application will not recover if they happen. On the other hand, Exceptions can be handled using try-catch blocks and can make program flow normal if they happen.
+	
+	3) Exceptions in java are divided into two categories – checked and unchecked. Where as all Errors belongs to only one category i.e unchecked.
+	
+	Click here for more info on Checked and Unchecked Exceptions.
+	
+	4) Compiler will not have any knowledge about unchecked exceptions which include Errors and sub classes of RunTimeException because they happen at run time. Where as compiler will have knowledge about checked Exceptions. Compiler will force you to keep try-catch blocks if it sees any statements which may throw checked exceptions.
+	
+	5) Exceptions are related to application where as Errors are related to environment in which application is running.
+
+20.What is the difference between Error, throwable and exception?
+
+	Both java.lang.Error and java.lang.Exception classes are sub classes of java.lang.Throwable class, but there exist some significant differences between them. java.lang.Error class represents the errors which are mainly caused by the environment in which application is running. For example, OutOfMemoryError occurs when JVM runs out of memory or StackOverflowError occurs when stack overflows.
+	
+	Where as java.lang.Exception class represents the exceptions which are mainly caused by the application itself. For example, NullPointerException occurs when an application tries to access null object or ClassCastException occurs when an application tries to cast incompatible class types. In this article, we will discuss the differences between Error and Exception in java.
+
+21.What are collection APIs, give me an example?
+
+The Collection API is a set of classes and interfaces that support operation on collections of objects. These classes and interfaces are more flexible, more powerful, and more regular than the vectors, arrays, and hashtables if effectively replaces.
+
+Example of classes: HashSet, HashMap, ArrayList, LinkedList, TreeSet and TreeMap. Example of interfaces: Collection, Set, List and Map. 
+
+22.What is the difference between final and finally?
+
+1)	Final is used to apply restrictions on class, method and variable. Final class can't be inherited, final method can't be overridden and final variable value can't be changed.	Finally is used to place important code, it will be executed whether exception is handled or not.	Finalize is used to perform clean up processing just before object is garbage collected.
+2)	Final is a keyword.	Finally is a block.	Finalize is a method.
+
+23.Will java supports multiple inheritance?
+
+C++ , Common lisp and few other languages supports multiple inheritance while java doesn't support it. It is just to remove ambiguity, because multiple inheritance can cause ambiguity in few scenarios. One of the most common scenario is Diamond problem.
+
+24.What are the different types of interface? (Ans List, set, Queue)
+
+Set — a collection that cannot contain duplicate elements. This interface models the mathematical set abstraction and is used to represent sets, such as the cards comprising a poker hand, the courses making up a student's schedule, or the processes running on a machine. See also The Set Interface section.
+List — an ordered collection (sometimes called a sequence). Lists can contain duplicate elements. The user of a List generally has precise control over where in the list each element is inserted and can access elements by their integer index (position). If you've used Vector, you're familiar with the general flavor of List. Also see The List Interface section.
+Queue — a collection used to hold multiple elements prior to processing. Besides basic Collection operations, a Queue provides additional insertion, extraction, and inspection operations.
+
+25.What are wrapper class? Give me an example?
+
+Wrapper class in java provides the mechanism to convert primitive into object and object into primitive.
+
+Since J2SE 5.0, autoboxing and unboxing feature converts primitive into object and object into primitive automatically. The automatic conversion of primitive into object is known and autoboxing and vice-versa unboxing.
+
+26.What is boxing and unboxing in Java? Explain with an example?
+
+autoboxing and unboxing feature converts primitive into object and object into primitive automatically. The automatic conversion of primitive into object is known and autoboxing and vice-versa unboxing.
+primitive wrapper
+boolean	 Boolean
+char	 Character
+byte	 Byte
+short	 Short
+int	 Integer
+long	 Long
+float	 Float
+double	 Double
+
+27.explain for each loop?
+
+The for-each loop hides the iterator, so you cannot call remove. Therefore, the for-each loop is not usable for filtering. Similarly it is not usable for loops where you need to replace elements in a list or array as you traverse it. Finally, it is not usable for loops that must iterate over multiple collections in parallel.
+
+28.What are iterators, explain with an example?
+
+Hashmap object values are iterated by using iterator. HashTable is the only class other than vector which uses enumerator to iterate the values of HashTable object.
+
+29.How do you access Private variables in different class?
+
+yes. and explanation given is: 
+private means 'private to the class not to the object' so 2 objects of the same class can access each others private data. 
+
+class Private {
+    private void display() {
+        System.out.println("Private function.");
+    }
+    public void invoke(Private p) {
+        p.display();
+    }
+}
+ 
+public class PrivateTest {
+    public static void main(String arg[]) {
+ 
+        Private p1 = new Private();
+        Private p2 = new Private();
+ 
+        p1.invoke(p2);
+    }
+}
+
+30.What is Constructor Over loading?
+
+Overloading constructors. It's common to overload constructors - define multiple constructors which differ in number and/or types of parameters. For example, exact hours are common, so an additional constructor could be defined which takes only the hour parameter. You can then set to minutes to a default value.
+
+31.What is Super keyword ? when and where do you use it ?
+
+It is used inside a sub-class method definition to call a method defined in the super class. Private methods of the super-class cannot be called. Only public and protected methods can be called by the super keyword. It is also used by class constructors to invoke constructors of its parent class.
+
